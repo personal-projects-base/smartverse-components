@@ -1,0 +1,17 @@
+{
+  "common_message": "Mensaje",
+  "common_action_yes": "Sí",
+  "common_action_no": "No",
+  "common_message_confirmation_delete": "¿Realmente desea eliminar este registro?",
+  "common_message_header_confirmation_delete": "Confirmación",
+  "datatable_search": "Buscar",
+  "datatable_refresh": "Actualizar",
+  "datatable_filters": "Filtros",
+  "datatable_add": "Agregar",
+  "datatable_actions": "Acciones",
+  "datatable_edit": "Editar",
+  "datatable_delete": "Eliminar",
+  "datatable_empty": "No se encontraron registros",
+  "screen_report_generation_error": "No se pudo generar el informe",
+  "screen_report_invalid_pdf": "El informe devuelto no es válido"
+}

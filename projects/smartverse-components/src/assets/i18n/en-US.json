@@ -1,0 +1,17 @@
+{
+  "common_message": "Message",
+  "common_action_yes": "Yes",
+  "common_action_no": "No",
+  "common_message_confirmation_delete": "Do you really want to delete this record?",
+  "common_message_header_confirmation_delete": "Confirmation",
+  "datatable_search": "Search",
+  "datatable_refresh": "Refresh",
+  "datatable_filters": "Filters",
+  "datatable_add": "Add",
+  "datatable_actions": "Actions",
+  "datatable_edit": "Edit",
+  "datatable_delete": "Delete",
+  "datatable_empty": "No records found",
+  "screen_report_generation_error": "The report could not be generated",
+  "screen_report_invalid_pdf": "The returned report is invalid"
+}

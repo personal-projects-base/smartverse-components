@@ -1,0 +1,29 @@
+{
+  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "version": 1,
+  "newProjectRoot": "projects",
+  "projects": {
+    "smartverse-components": {
+      "projectType": "library",
+      "root": "projects/smartverse-components",
+      "sourceRoot": "projects/smartverse-components/src",
+      "prefix": "sv",
+      "architect": {
+        "build": {
+          "builder": "@angular/build:ng-packagr",
+          "options": {
+            "project": "projects/smartverse-components/ng-package.json",
+            "tsConfig": "projects/smartverse-components/tsconfig.lib.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/smartverse-components/tsconfig.lib.prod.json"
+            },
+            "development": {}
+          },
+          "defaultConfiguration": "production"
+        }
+      }
+    }
+  }
+}

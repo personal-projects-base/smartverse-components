@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Documentação oficial da biblioteca Angular smartverse-components">
+  <meta name="theme-color" content="#071811">
+  <title>Smartverse Components</title>
+  <link rel="preconnect" href="https://unpkg.com">
+  <link rel="stylesheet" href="./assets/styles.css">
+</head>
+<body>
+  <div id="app" v-cloak>
+    <header class="topbar">
+      <a class="brand" href="#overview" @click="closeMobileNav">
+        <span class="brand-mark">S</span>
+        <span><strong>Smartverse</strong><small>Components</small></span>
+      </a>
+      <div class="topbar-actions">
+        <span class="version-pill">v{{ version }}</span>
+        <a class="download-button" :href="downloadUrl" download>Baixar .tgz</a>
+        <button class="menu-button" type="button" @click="mobileNav = !mobileNav" aria-label="Alternar navegação">☰</button>
+      </div>
+    </header>
+
+    <div class="shell">
+      <aside class="sidebar" :class="{open: mobileNav}">
+        <label class="search">
+          <span>⌕</span>
+          <input v-model.trim="query" type="search" placeholder="Buscar componente...">
+        </label>
+
+        <nav>
+          <p class="nav-label">Começar</p>
+          <a v-for="item in startNav" :key="item.id" :href="'#' + item.id" :class="{active: route === item.id}" @click="closeMobileNav">
+            <span>{{ item.icon }}</span>{{ item.label }}
+          </a>
+
+          <p class="nav-label">Componentes</p>
+          <a v-for="component in filteredComponents" :key="component.slug" :href="'#component/' + component.slug"
+             :class="{active: route === 'component/' + component.slug}" @click="closeMobileNav">
+            <span>◇</span>{{ component.name }}
+          </a>
+
+          <p class="nav-label">Referência</p>
+          <a href="#services" :class="{active: route === 'services'}" @click="closeMobileNav"><span>⌁</span> Serviços</a>
+          <a href="#downloads" :class="{active: route === 'downloads'}" @click="closeMobileNav"><span>⇩</span> Downloads</a>
+        </nav>
+      </aside>
+      <button v-if="mobileNav" class="nav-backdrop" type="button" @click="mobileNav = false" aria-label="Fechar navegação"></button>
+
+      <main>
+        <section v-if="route === 'overview'" class="page hero-page">
+          <div class="eyebrow">Angular 21 · PrimeNG 21</div>
+          <h1>Uma base visual consistente para os frontends Smartverse.</h1>
+          <p class="lead">Componentes standalone, tipados e configuráveis, derivados da experiência do Church Lite e preparados para projetos novos.</p>
+          <div class="hero-actions">
+            <a class="primary-action" href="#quickstart">Começar agora</a>
+            <a class="secondary-action" :href="downloadUrl" download>Baixar v{{ version }}</a>
+          </div>
+          <div class="stat-grid">
+            <article><strong>{{ components.length }}</strong><span>componentes documentados</span></article>
+            <article><strong>3</strong><span>idiomas incluídos</span></article>
+            <article><strong>0</strong><span>acoplamentos com Church Lite</span></article>
+          </div>
+          <div class="feature-grid">
+            <article v-for="feature in features" :key="feature.title"><span>{{ feature.icon }}</span><h2>{{ feature.title }}</h2><p>{{ feature.text }}</p></article>
+          </div>
+        </section>
+
+        <section v-else-if="route === 'quickstart'" class="page">
+          <header class="page-heading"><div class="eyebrow">Primeiros passos</div><h1>Instalação e configuração</h1><p>Adicione o pacote, configure o PrimeNG e registre os providers globais.</p></header>
+          <doc-step number="1" title="Instale o pacote">
+            <code-block :code="installCode"></code-block>
+          </doc-step>
+          <doc-step number="2" title="Configure o frontend">
+            <p>Registre o cliente HTTP, o tema do PrimeNG e o provider da biblioteca no <code>app.config.ts</code>.</p>
+            <code-block :code="configurationCode" language="TypeScript"></code-block>
+          </doc-step>
+          <doc-step number="3" title="Inclua ícones e estilos">
+            <code-block :code="stylesCode" language="JSON"></code-block>
+            <div class="callout">Os arquivos de tradução do pacote ficam em <code>node_modules/smartverse-components/assets/i18n</code>. Copie-os para <code>public/assets/i18n</code> ou use arquivos próprios.</div>
+          </doc-step>
+          <doc-step number="4" title="Importe somente o que usar">
+            <code-block :code="standaloneCode" language="TypeScript"></code-block>
+          </doc-step>
+        </section>
+
+        <section v-else-if="route === 'configuration'" class="page">
+          <header class="page-heading"><div class="eyebrow">Configuração</div><h1>Opções globais</h1><p>Todos os endpoints e comportamentos específicos do ambiente são configurados pelo frontend consumidor.</p></header>
+          <code-block :code="fullConfigurationCode" language="TypeScript"></code-block>
+          <api-table title="SmartverseComponentsOptions" :rows="configurationRows"></api-table>
+          <h2>Traduções customizadas</h2>
+          <p>Para buscar substituições no backend, implemente <code>TranslationOverridesLoader</code> e registre-o no token <code>SMARTVERSE_TRANSLATION_OVERRIDES</code>.</p>
+          <code-block :code="overrideLoaderCode" language="TypeScript"></code-block>
+        </section>
+
+        <component-page v-else-if="currentComponent" :component="currentComponent"></component-page>
+
+        <section v-else-if="route === 'services'" class="page">
+          <header class="page-heading"><div class="eyebrow">Referência</div><h1>Serviços e utilitários</h1><p>Recursos exportados pela mesma API pública do pacote.</p></header>
+          <div class="service-grid">
+            <article v-for="service in services" :key="service.name"><div class="service-icon">{{ service.icon }}</div><div><h2>{{ service.name }}</h2><p>{{ service.description }}</p><code>{{ service.usage }}</code></div></article>
+          </div>
+          <h2>Estilos compartilhados</h2>
+          <p>Os estilos de páginas de entidade e botões ficam disponíveis dentro do pacote:</p>
+          <code-block :code="scssCode" language="SCSS"></code-block>
+        </section>
+
+        <section v-else-if="route === 'downloads'" class="page">
+          <header class="page-heading"><div class="eyebrow">Releases</div><h1>Downloads</h1><p>Versões compiladas no Angular Package Format, prontas para instalação pelo npm.</p></header>
+          <div class="release-card">
+            <div><span class="release-badge">Mais recente</span><h2>smartverse-components v{{ version }}</h2><p>Angular 21 · PrimeNG 21 · pacote de aproximadamente 71 KB</p></div>
+            <a class="primary-action" :href="downloadUrl" download>Baixar .tgz</a>
+          </div>
+          <h2>Instalação pelo GitHub Pages</h2>
+          <code-block :code="pagesInstallCode"></code-block>
+          <div class="callout">Depois que o endereço do GitHub Pages estiver definido, substitua <code>SEU-USUARIO</code> pela organização ou usuário correto.</div>
+          <h2>Política de versões</h2>
+          <p>Use sempre uma versão explícita no projeto consumidor. Arquivos antigos permanecerão em <code>docs/downloads</code> para permitir builds reproduzíveis e rollback.</p>
+        </section>
+
+        <section v-else class="page empty-state"><span>404</span><h1>Página não encontrada</h1><a href="#overview">Voltar ao início</a></section>
+      </main>
+    </div>
+  </div>
+
+  <script src="https://unpkg.com/vue@3/dist/vue.global.prod.js"></script>
+  <script src="./assets/components.js"></script>
+  <script src="./assets/app.js"></script>
+</body>
+</html>

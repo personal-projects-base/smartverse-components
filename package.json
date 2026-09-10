@@ -1,0 +1,32 @@
+{
+  "name": "smartverse-components-workspace",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "build": "ng build smartverse-components",
+    "build:watch": "ng build smartverse-components --watch",
+    "pack": "npm run build && npm pack ./dist/smartverse-components --pack-destination ./dist"
+  },
+  "devDependencies": {
+    "@angular/animations": "^21.2.18",
+    "@angular/build": "^21.2.19",
+    "@angular/cli": "^21.2.19",
+    "@angular/common": "^21.2.18",
+    "@angular/compiler": "^21.2.18",
+    "@angular/compiler-cli": "^21.2.18",
+    "@angular/core": "^21.2.18",
+    "@angular/forms": "^21.2.18",
+    "@angular/platform-browser": "^21.2.18",
+    "@angular/router": "^21.2.18",
+    "@primeuix/themes": "^2.0.3",
+    "ng-packagr": "^21.2.0",
+    "ngx-cookie-service": "^21.3.1",
+    "ngx-image-cropper": "^9.1.6",
+    "primeflex": "^3.3.1",
+    "primeicons": "^7.0.0",
+    "primeng": "^21.1.9",
+    "rxjs": "~7.8.0",
+    "tslib": "^2.3.0",
+    "typescript": "~5.9.3"
+  }
+}

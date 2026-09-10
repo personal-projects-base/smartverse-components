@@ -1,0 +1,17 @@
+{
+  "common_message": "Mensagem",
+  "common_action_yes": "Sim",
+  "common_action_no": "Não",
+  "common_message_confirmation_delete": "Deseja realmente excluir este registro?",
+  "common_message_header_confirmation_delete": "Confirmação",
+  "datatable_search": "Pesquisar",
+  "datatable_refresh": "Atualizar",
+  "datatable_filters": "Filtros",
+  "datatable_add": "Adicionar",
+  "datatable_actions": "Ações",
+  "datatable_edit": "Editar",
+  "datatable_delete": "Excluir",
+  "datatable_empty": "Nenhum registro encontrado",
+  "screen_report_generation_error": "Não foi possível gerar o relatório",
+  "screen_report_invalid_pdf": "O relatório retornado é inválido"
+}

@@ -1,0 +1,32 @@
+<button class="sv-sidebar-toggle" type="button" (click)="toggle()" [attr.aria-expanded]="expanded" aria-label="Alternar menu">
+  <i class="pi pi-bars"></i>
+</button>
+
+<aside class="sv-sidebar" [class.sv-sidebar--open]="expanded" [class.sv-sidebar--mobile]="mobile">
+  <header class="sv-sidebar__brand">
+    @if (logoUrl) { <img [src]="logoUrl" alt="" /> }
+    <strong>{{ brand }}</strong>
+    @if (mobile) {
+      <button type="button" (click)="toggle()" aria-label="Fechar menu"><i class="pi pi-times"></i></button>
+    }
+  </header>
+
+  @if (user) {
+    <section class="sv-sidebar__user">
+      <p-avatar [image]="user.imageUrl || undefined" [label]="user.imageUrl ? undefined : (user.initials || user.name.charAt(0))" shape="circle" />
+      <div><strong>{{ user.name }}</strong>@if (user.subtitle) { <small>{{ user.subtitle }}</small> }</div>
+    </section>
+  }
+
+  <nav aria-label="Menu principal">
+    <sv-sidebar-submenu [items]="items" (itemSelected)="select($event)" />
+  </nav>
+
+  <div class="sv-sidebar__footer">
+    <ng-content select="[sidebar-footer]" />
+    @if (showLogout) {
+      <p-button [text]="true" icon="pi pi-sign-out" [label]="logoutLabel" (onClick)="logout.emit()" />
+    }
+  </div>
+</aside>
+@if (mobile && expanded) { <button class="sv-sidebar-backdrop" type="button" aria-label="Fechar menu" (click)="toggle()"></button> }

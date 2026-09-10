@@ -3,3 +3,4 @@
 /.angular
 /.idea
 *.tgz
+!docs/downloads/*.tgz

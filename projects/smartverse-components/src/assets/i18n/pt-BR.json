@@ -12,6 +12,17 @@
   "datatable_edit": "Editar",
   "datatable_delete": "Excluir",
   "datatable_empty": "Nenhum registro encontrado",
+  "datatable_empty_title": "Nenhum registro encontrado",
+  "datatable_empty_description": "Adicione um registro ou ajuste os filtros da pesquisa.",
+  "datatable_add_first": "Adicionar primeiro registro",
+  "datatable_all": "Todos",
+  "datatable_filter_by": "Filtrar por",
+  "datatable_filters_description": "Combine os campos abaixo para refinar os resultados.",
+  "datatable_clear": "Limpar",
+  "datatable_apply_filters": "Aplicar filtros",
+  "datatable_records": "registros",
+  "screen_reports": "Relatórios",
+  "common_print": "Imprimir",
   "screen_report_generation_error": "Não foi possível gerar o relatório",
   "screen_report_invalid_pdf": "O relatório retornado é inválido"
 }

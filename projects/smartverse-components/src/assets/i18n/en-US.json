@@ -12,6 +12,17 @@
   "datatable_edit": "Edit",
   "datatable_delete": "Delete",
   "datatable_empty": "No records found",
+  "datatable_empty_title": "No records found",
+  "datatable_empty_description": "Add a record or adjust the search filters.",
+  "datatable_add_first": "Add first record",
+  "datatable_all": "All",
+  "datatable_filter_by": "Filter by",
+  "datatable_filters_description": "Combine the fields below to refine the results.",
+  "datatable_clear": "Clear",
+  "datatable_apply_filters": "Apply filters",
+  "datatable_records": "records",
+  "screen_reports": "Reports",
+  "common_print": "Print",
   "screen_report_generation_error": "The report could not be generated",
   "screen_report_invalid_pdf": "The returned report is invalid"
 }

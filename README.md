@@ -2,6 +2,8 @@
 
 Biblioteca Angular 21 de componentes reutilizáveis da Smartverse, criada a partir dos componentes do Church Lite sem alterar o projeto original.
 
+As decisões, regras de evolução e o estado do projeto estão registrados em [`CONTEXT.md`](./CONTEXT.md). Esse é o documento de referência para as próximas alterações.
+
 ## Instalação local
 
 ```bash
